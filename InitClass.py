@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import *
 
 
 class InitClass(QWidget):
@@ -17,29 +17,84 @@ class InitClass(QWidget):
         self.setWindowTitle('MainWindow')
         self.setWindowIcon(QIcon('icon.png'))
 
-        button1 = QPushButton('Button 1')
-        button2 = QPushButton('Button 2')
+        #Creating ui for the first tab
+        input_value_label = QLabel()
+        input_value_label.setText("Полученная сумма: ")
+        input_value_label.setFont(QFont('Times Font', 16))
 
-        table = QTableWidget(self)
-        table.setFixedWidth(628)
-        table.setFixedHeight(800)
+        input_text_edit = QTextEdit()
+        input_text_edit.setText("100")
+        input_text_edit.setFont(QFont('Times Font', 16))
+        input_text_edit.setFixedSize(150, 45)
+
+        rest_label = QLabel()
+        rest_label.setText("Сдача: ")
+        rest_label.setFont(QFont('Times Font', 16))
+
+        small_label_layout = QHBoxLayout()
+        small_label_layout.addWidget(input_value_label)
+        small_label_layout.addWidget(input_text_edit)
+        small_label_layout.addStretch(1)
+        small_label_layout.addWidget(rest_label)
+        small_label_layout.addStretch(2)
+
+        pre_sum_label = QLabel()
+        pre_sum_label.setText("Подытог: ")
+        pre_sum_label.setFont(QFont('Times Font', 16))
+
+        discount_label = QLabel()
+        discount_label.setText("Скидка: ")
+        discount_label.setFont(QFont('Times Font', 16))
+
+        discount_text_edit = QTextEdit()
+        discount_text_edit.setText("0")
+        discount_text_edit.setFont(QFont('Times Font', 16))
+        discount_text_edit.setFixedSize(150, 45)
+
+        discount_layout = QHBoxLayout()
+        discount_layout.addWidget(discount_label)
+        discount_layout.addWidget(discount_text_edit)
+        discount_layout.addStretch(2)
+
+        sum_label = QLabel()
+        sum_label.setText("Итог: ")
+        sum_label.setFont(QFont('Times Font', 16))
+
+        label_layout = QVBoxLayout()
+        label_layout.addStretch(1)
+        label_layout.addWidget(pre_sum_label)
+        label_layout.addLayout(discount_layout)
+        label_layout.addWidget(sum_label)
+        label_layout.addLayout(small_label_layout)
+
+        table = QTableWidget()
+        table.setFixedWidth(627)
+        table.setFixedHeight(600)
         table.setColumnCount(5)
         table.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество", "Сумма"])
 
-        hlayout = QHBoxLayout()
-        hlayout.addStretch(1)
-        hlayout.addWidget(button1)
-        hlayout.addWidget(button2)
+        horizontal_layout = QHBoxLayout()
+        horizontal_layout.addWidget(table)
+        horizontal_layout.addStretch(1)
+        horizontal_layout.addLayout(label_layout)
+        horizontal_layout.addStretch(6)
 
-        vlayout = QVBoxLayout()
-        vlayout.addStretch(1)
-        vlayout.addWidget(table)
-        vlayout.addStretch(2)
-        vlayout.addLayout(hlayout)
+        close_button = QPushButton("Закрыть чек")
+        close_button.setFont(QFont('Times Font', 16))
+        close_button.setFixedHeight(50)
+        close_layout = QHBoxLayout()
+        close_layout.addWidget(close_button)
 
+        vertical_layout = QVBoxLayout()
+        vertical_layout.addStretch(1)
+        vertical_layout.addLayout(horizontal_layout)
+        vertical_layout.addStretch(2)
+        vertical_layout.addLayout(close_layout)
+
+        # Adding tabs to ui
         tab_main = QFrame()
         layout_tab_main = QVBoxLayout()
-        layout_tab_main.addLayout(vlayout)
+        layout_tab_main.addLayout(vertical_layout)
         tab_main.setLayout(layout_tab_main)
 
         tab_adding = QFrame()
@@ -73,8 +128,6 @@ class InitClass(QWidget):
         main_layout = QHBoxLayout()
         main_layout.addWidget(self.tab)
         self.setLayout(main_layout)
-
-
 
 
     def center(self):
