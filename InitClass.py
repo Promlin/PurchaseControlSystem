@@ -17,7 +17,7 @@ class InitClass(QWidget):
         self.setWindowTitle('MainWindow')
         self.setWindowIcon(QIcon('icon.png'))
 
-        #Creating ui for the first tab
+        # Creating ui for the first tab
         input_value_label = QLabel()
         input_value_label.setText("Полученная сумма: ")
         input_value_label.setFont(QFont('Times Font', 16))
@@ -91,6 +91,38 @@ class InitClass(QWidget):
         vertical_layout.addStretch(2)
         vertical_layout.addLayout(close_layout)
 
+        # Creating UI for the third tab
+        table_rest = QTableWidget()
+        table_rest.setColumnCount(4)
+        table_rest.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество"])
+        table_rest.setFixedWidth(502)
+        table_rest.setFixedHeight(700)
+
+        category_box = QComboBox()
+        category_box.addItem("Все")
+        category_box.addItem("Посуда")
+        category_box.addItem("Удобрения")
+
+        min_max_button = QPushButton("min - max")
+        max_min_button = QPushButton("max - min")
+
+        button_layout = QHBoxLayout()
+        button_layout.addWidget(min_max_button)
+        button_layout.addStretch(1)
+        button_layout.addWidget(max_min_button)
+
+        small_rest_layout = QVBoxLayout()
+        small_rest_layout.addStretch(1)
+        small_rest_layout.addWidget(category_box)
+        small_rest_layout.addLayout(button_layout)
+        small_rest_layout.addStretch(10)
+
+        horizontal_layout_rest = QHBoxLayout()
+        horizontal_layout_rest.addWidget(table_rest)
+        horizontal_layout_rest.addStretch(1)
+        horizontal_layout_rest.addLayout(small_rest_layout)
+        horizontal_layout_rest.addStretch(8)
+
         # Adding tabs to ui
         tab_main = QFrame()
         layout_tab_main = QVBoxLayout()
@@ -103,6 +135,7 @@ class InitClass(QWidget):
 
         tab_rest = QFrame()
         layout_tab_rest = QVBoxLayout()
+        layout_tab_rest.addLayout(horizontal_layout_rest)
         tab_rest.setLayout(layout_tab_rest)
 
         tab_hand = QFrame()
