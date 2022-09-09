@@ -1,138 +1,131 @@
-import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 
-class InitClass(QWidget):
+class SecondExample(QWidget):
 
     def __init__(self):
         super().__init__()
 
-        self.init_ui()
+        self.initUI()
 
-    def init_ui(self):
-
+    def initUI(self):
         self.resize(1300, 900)
         self.center()
         self.setWindowTitle('MainWindow')
         self.setWindowIcon(QIcon('icon.png'))
 
         # Adding tabs to ui
-        tab_main = QFrame()
-        vertical_layout = self.init_base_tab()
-        tab_main.setLayout(vertical_layout)
+        tab_1 = QFrame()
+        layout_tab_1 = QVBoxLayout()
+        vertical_layout_base = self.init_first_tab()
+        layout_tab_1.addLayout(vertical_layout_base)
+        tab_1.setLayout(layout_tab_1)
 
-        tab_adding = QFrame()
-        layout_tab_adding = self.init_second_tab()
-        tab_adding.setLayout(layout_tab_adding)
+        tab_2 = QFrame()
+        layout_tab_2 = QVBoxLayout()
+        vertical_layout_add = self.init_second_tab()
+        layout_tab_2.addLayout(vertical_layout_add)
+        tab_2.setLayout(layout_tab_2)
 
-        tab_rest = QFrame()
+        tab_3 = QFrame()
+        layout_tab_3 = QVBoxLayout()
         horizontal_layout_rest = self.init_third_tab()
-        tab_rest.setLayout(horizontal_layout_rest)
+        layout_tab_3.addLayout(horizontal_layout_rest)
+        tab_3.setLayout(layout_tab_3)
 
-        tab_hand = QFrame()
-        layout_tab_hand = QVBoxLayout()
-        tab_hand.setLayout(layout_tab_hand)
+        tab_4 = QFrame()
+        layout_tab_4 = QVBoxLayout()
+        tab_4.setLayout(layout_tab_4)
 
-        tab_stats = QFrame()
-        layout_tab_stats = self.init_fifth_tab()
-        tab_stats.setLayout(layout_tab_stats)
+        tab_5 = QFrame()
+        layout_tab_5 = QVBoxLayout()
+        layout_current = self.init_fifth_tab()
+        layout_tab_5.addLayout(layout_current)
+        tab_5.setLayout(layout_tab_5)
 
-        tab_end = QFrame()
-        layout_tab_end = QVBoxLayout()
-        tab_end.setLayout(layout_tab_end)
+        tab_6 = QFrame()
+        layout_tab_6 = QVBoxLayout()
+        tab_6.setLayout(layout_tab_6)
 
         self.tab = QTabWidget()
-        self.tab.addTab(tab_main, "Рабочий режим")
-        self.tab.addTab(tab_adding, "Добавление товара")
-        self.tab.addTab(tab_rest, "Просмотр остатков")
-        self.tab.addTab(tab_hand, "Ручной ввод")
-        self.tab.addTab(tab_stats, "Статистика")
-        self.tab.addTab(tab_end, "Конец дня")
+        self.tab.addTab(tab_1, "Base")
+        self.tab.addTab(tab_2, "Adding")
+        self.tab.addTab(tab_3, "Rest")
+        self.tab.addTab(tab_4, "Hand")
+        self.tab.addTab(tab_5, "Current Day")
+        self.tab.addTab(tab_6, "End")
 
         main_layout = QHBoxLayout()
         main_layout.addWidget(self.tab)
         self.setLayout(main_layout)
 
-    def init_base_tab(self):
+    def init_first_tab(self):
         # Creating ui for the first tab
         input_value_label = QLabel()
-        input_value_label.setText("Полученная сумма: ")
+        input_value_label.setText("Value: ")
         input_value_label.setFont(QFont('Times Font', 13))
-
-        input_text_edit = QTextEdit()
-        input_text_edit.setText("100")
-        input_text_edit.setFont(QFont('Times Font', 13))
-        input_text_edit.setFixedSize(150, 45)
-
+        input_textedit = QTextEdit()
+        input_textedit.setText("100")
+        input_textedit.setFont(QFont('Times Font', 13))
+        input_textedit.setFixedSize(150, 45)
         rest_label = QLabel()
-        rest_label.setText("Сдача: ")
+        rest_label.setText("Rest: ")
         rest_label.setFont(QFont('Times Font', 13))
 
         small_label_layout = QHBoxLayout()
         small_label_layout.addWidget(input_value_label)
-        small_label_layout.addWidget(input_text_edit)
+        small_label_layout.addWidget(input_textedit)
         small_label_layout.addStretch(1)
         small_label_layout.addWidget(rest_label)
         small_label_layout.addStretch(2)
 
         pre_sum_label = QLabel()
-        pre_sum_label.setText("Подытог: ")
+        pre_sum_label.setText("Pre-Sum: ")
         pre_sum_label.setFont(QFont('Times Font', 13))
 
         discount_label = QLabel()
-        discount_label.setText("Скидка: ")
+        discount_label.setText("Discount")
         discount_label.setFont(QFont('Times Font', 13))
 
-        discount_text_edit = QTextEdit()
-        discount_text_edit.setText("0")
-        discount_text_edit.setFont(QFont('Times Font', 13))
-        discount_text_edit.setFixedSize(150, 45)
-
-        discount_layout = QHBoxLayout()
-        discount_layout.addWidget(discount_label)
-        discount_layout.addWidget(discount_text_edit)
-        discount_layout.addStretch(2)
-
         sum_label = QLabel()
-        sum_label.setText("Итог: ")
+        sum_label.setText("Sum: ")
         sum_label.setFont(QFont('Times Font', 13))
 
         label_layout = QVBoxLayout()
         label_layout.addStretch(1)
         label_layout.addWidget(pre_sum_label)
-        label_layout.addLayout(discount_layout)
+        label_layout.addWidget(discount_label)
         label_layout.addWidget(sum_label)
         label_layout.addLayout(small_label_layout)
 
-        table = QTableWidget()
-        table.setFixedWidth(627)
-        table.setFixedHeight(600)
-        table.setColumnCount(5)
-        table.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество", "Сумма"])
+        table_base = QTableWidget()
+        table_base.setFont(QFont('Times Font', 13))
+        table_base.setColumnCount(5)
+        table_base.setHorizontalHeaderLabels(["Header 1", "Header 2", "Header 3", "Header 4", "Header 5"])
+        table_base.setFixedWidth(627)
+        table_base.setFixedHeight(600)
 
-        horizontal_layout = QHBoxLayout()
-        horizontal_layout.addWidget(table)
-        horizontal_layout.addStretch(1)
-        horizontal_layout.addLayout(label_layout)
-        horizontal_layout.addStretch(6)
+        horizontal_layout_base = QHBoxLayout()
+        horizontal_layout_base.addWidget(table_base)
+        horizontal_layout_base.addStretch(1)
+        horizontal_layout_base.addLayout(label_layout)
+        horizontal_layout_base.addStretch(6)
 
-        close_button = QPushButton("Закрыть чек")
-        close_button.setFont(QFont('Times Font', 13))
+        close_button = QPushButton('Close Check')
         close_button.setFixedHeight(50)
         close_layout = QHBoxLayout()
         close_layout.addWidget(close_button)
 
-        vertical_layout = QVBoxLayout()
-        vertical_layout.addStretch(1)
-        vertical_layout.addLayout(horizontal_layout)
-        vertical_layout.addStretch(2)
-        vertical_layout.addLayout(close_layout)
+        vertical_layout_base = QVBoxLayout()
+        vertical_layout_base.addStretch(1)
+        vertical_layout_base.addLayout(horizontal_layout_base)
+        vertical_layout_base.addStretch(2)
+        vertical_layout_base.addLayout(close_layout)
 
-        return vertical_layout
+        return vertical_layout_base
 
     def init_second_tab(self):
-
         # Creating UI for the second tab
         start_add_button = QPushButton("Start")
         self.set_text_style(start_add_button)
@@ -241,18 +234,22 @@ class InitClass(QWidget):
     def init_third_tab(self):
         # Creating UI for the third tab
         table_rest = QTableWidget()
+        table_rest.setFont(QFont('Times Font', 13))
         table_rest.setColumnCount(4)
-        table_rest.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество"])
+        table_rest.setHorizontalHeaderLabels(["Id", "Title", "Price", "Rest"])
         table_rest.setFixedWidth(502)
         table_rest.setFixedHeight(700)
 
         category_box = QComboBox()
-        category_box.addItem("Все")
-        category_box.addItem("Посуда")
-        category_box.addItem("Удобрения")
+        category_box.setFont(QFont('Times Font', 13))
+        category_box.addItem("All")
+        category_box.addItem("first")
+        category_box.addItem("second")
 
         min_max_button = QPushButton("min - max")
+        min_max_button.setFont(QFont('Times Font', 13))
         max_min_button = QPushButton("max - min")
+        max_min_button.setFont(QFont('Times Font', 13))
 
         button_layout = QHBoxLayout()
         button_layout.addWidget(min_max_button)
