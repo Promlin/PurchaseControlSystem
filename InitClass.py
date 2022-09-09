@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+import ctypes
 
 
 class InitClass(QWidget):
@@ -16,6 +17,9 @@ class InitClass(QWidget):
         self.center()
         self.setWindowTitle('MainWindow')
         self.setWindowIcon(QIcon('icon.png'))
+        # Changing app shortcut picture
+        myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
         # Adding tabs to ui
         tab_main = QFrame()
