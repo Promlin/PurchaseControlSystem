@@ -106,10 +106,11 @@ class InitClass(QWidget):
         label_layout.addLayout(small_label_layout)
 
         table = QTableWidget()
+        table.setFont(QFont('Times Font', 13))
         table.setFixedWidth(627)
         table.setFixedHeight(600)
         table.setColumnCount(5)
-        table.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество", "Сумма"])
+        table.setHorizontalHeaderLabels(["ID", "Название", "Цена", "Количество", "Сумма"])
 
         horizontal_layout = QHBoxLayout()
         horizontal_layout.addWidget(table)
@@ -134,7 +135,7 @@ class InitClass(QWidget):
     def init_second_tab(self):
 
         # Creating UI for the second tab
-        start_add_button = QPushButton("Start")
+        start_add_button = QPushButton("Добавить")
         self.set_text_style(start_add_button)
         start_add_layout = QHBoxLayout()
         start_add_layout.addStretch(1)
@@ -144,16 +145,16 @@ class InitClass(QWidget):
         id_add_label = QLabel("ID")
         self.set_text_style(id_add_label)
 
-        title_add_label = QLabel("Title")
+        title_add_label = QLabel("Название")
         self.set_text_style(title_add_label)
 
-        price_add_label = QLabel("Price")
+        price_add_label = QLabel("Цена")
         self.set_text_style(price_add_label)
 
-        amount_add_label = QLabel("Amount")
+        amount_add_label = QLabel("Количество")
         self.set_text_style(amount_add_label)
 
-        category_add_label = QLabel("Category")
+        category_add_label = QLabel("Категория")
         self.set_text_style(category_add_label)
 
         label_add_layout = QHBoxLayout()
@@ -183,9 +184,9 @@ class InitClass(QWidget):
 
         category_add_combo_box = QComboBox()
         self.set_text_style(category_add_combo_box)
-        category_add_combo_box.addItem("All")
-        category_add_combo_box.addItem("Dish")
-        category_add_combo_box.addItem("Ground")
+        category_add_combo_box.addItem("Все")
+        category_add_combo_box.addItem("Посуда")
+        category_add_combo_box.addItem("Удобрения")
 
         button_add_layout = QHBoxLayout()
         button_add_layout.addStretch(4)
@@ -200,7 +201,7 @@ class InitClass(QWidget):
         button_add_layout.addWidget(category_add_combo_box)
         button_add_layout.addStretch(20)
 
-        add_add_button = QPushButton("Add")
+        add_add_button = QPushButton("Добавить")
         self.set_text_style(add_add_button)
         add_button_layout = QHBoxLayout()
         add_button_layout.addStretch(1)
@@ -210,7 +211,7 @@ class InitClass(QWidget):
         table_add = QTableWidget()
         table_add.setFont(QFont('Times Font', 13))
         table_add.setColumnCount(5)
-        table_add.setHorizontalHeaderLabels(["Id", "Title", "Price", "Amount", "Category"])
+        table_add.setHorizontalHeaderLabels(["Id", "Название", "Цена", "Количество", "Категория"])
         table_add.setFixedWidth(627)
         table_add.setFixedHeight(400)
 
@@ -219,7 +220,7 @@ class InitClass(QWidget):
         table_add_layout.addWidget(table_add)
         table_add_layout.addStretch(8)
 
-        add_all_add_button = QPushButton("Add all")
+        add_all_add_button = QPushButton("Добавить все")
         add_all_add_button.setFont(QFont('Times Font', 13))
         add_all_add_button.setFixedHeight(50)
 
@@ -241,18 +242,22 @@ class InitClass(QWidget):
     def init_third_tab(self):
         # Creating UI for the third tab
         table_rest = QTableWidget()
+        table_rest.setFont(QFont('Times Font', 13))
         table_rest.setColumnCount(4)
-        table_rest.setHorizontalHeaderLabels(["ID", "Наименование", "Цена", "Количество"])
+        table_rest.setHorizontalHeaderLabels(["ID", "Название", "Цена", "Количество"])
         table_rest.setFixedWidth(502)
         table_rest.setFixedHeight(700)
 
         category_box = QComboBox()
+        self.set_text_style(category_box)
         category_box.addItem("Все")
         category_box.addItem("Посуда")
         category_box.addItem("Удобрения")
 
         min_max_button = QPushButton("min - max")
+        self.set_text_style(min_max_button)
         max_min_button = QPushButton("max - min")
+        self.set_text_style(max_min_button)
 
         button_layout = QHBoxLayout()
         button_layout.addWidget(min_max_button)
@@ -275,13 +280,13 @@ class InitClass(QWidget):
 
     def init_fifth_tab(self):
 
-        checks_label = QLabel("Checks")
+        checks_label = QLabel("Чеки")
         self.set_text_style(checks_label)
 
         checks_table = QTableWidget()
         checks_table.setFont(QFont('Times Font', 13))
         checks_table.setColumnCount(4)
-        checks_table.setHorizontalHeaderLabels(["Time", "Check", "Positions", "Sum"])
+        checks_table.setHorizontalHeaderLabels(["Время", "Номер", "Позиций", "Сумма"])
         checks_table.setFixedWidth(502)
         checks_table.setFixedHeight(400)
 
@@ -289,13 +294,13 @@ class InitClass(QWidget):
         checks_layout.addWidget(checks_label)
         checks_layout.addWidget(checks_table)
 
-        positions_label = QLabel("Positions")
+        positions_label = QLabel("Позиции")
         self.set_text_style(positions_label)
 
         positions_table = QTableWidget()
         positions_table.setFont(QFont('Times Font', 13))
         positions_table.setColumnCount(4)
-        positions_table.setHorizontalHeaderLabels(["Title", "Price", "Amount", "Sum"])
+        positions_table.setHorizontalHeaderLabels(["Название", "Цена", "Количество", "Сумма"])
         positions_table.setFixedWidth(502)
         positions_table.setFixedHeight(400)
 
@@ -309,14 +314,14 @@ class InitClass(QWidget):
         first_part_layout.addLayout(positions_layout)
         first_part_layout.addStretch(1)
 
-        sort_label = QLabel("Sorted")
+        sort_label = QLabel("Сортировка")
         self.set_text_style(sort_label)
 
         category_box = QComboBox()
         self.set_text_style(category_box)
-        category_box.addItem("All")
-        category_box.addItem("first")
-        category_box.addItem("second")
+        category_box.addItem("Все")
+        category_box.addItem("Удобрения")
+        category_box.addItem("Посуда")
 
         category_small_layout = QHBoxLayout()
         category_small_layout.addWidget(sort_label)
@@ -327,7 +332,7 @@ class InitClass(QWidget):
         sorted_table = QTableWidget()
         sorted_table.setFont(QFont('Times Font', 13))
         sorted_table.setColumnCount(4)
-        sorted_table.setHorizontalHeaderLabels(["Title", "Price", "Amount", "Rest"])
+        sorted_table.setHorizontalHeaderLabels(["Название", "Цена", "Количество", "Остаток"])
         sorted_table.setFixedWidth(502)
         sorted_table.setFixedHeight(400)
 
@@ -335,16 +340,16 @@ class InitClass(QWidget):
         category_layout.addLayout(category_small_layout)
         category_layout.addWidget(sorted_table)
 
-        check_sum_label = QLabel("Check sum")
+        check_sum_label = QLabel("Сумма чека")
         self.set_text_style(check_sum_label)
 
-        cash_label = QLabel("Cash")
+        cash_label = QLabel("Наличные")
         self.set_text_style(cash_label)
 
-        online_label = QLabel("Online")
+        online_label = QLabel("Безнал")
         self.set_text_style(online_label)
 
-        sum_label = QLabel("Sum")
+        sum_label = QLabel("Сумма")
         self.set_text_style(sum_label)
 
         labels_layout = QVBoxLayout()
